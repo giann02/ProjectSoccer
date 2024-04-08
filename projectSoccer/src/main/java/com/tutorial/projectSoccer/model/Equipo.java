@@ -31,5 +31,4 @@ public class Equipo {
     @NotBlank(message = "El país del equipo no puede estar vacío")
     private String pais;
 
-
 }

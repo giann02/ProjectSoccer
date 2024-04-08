@@ -1,9 +1,7 @@
 package com.tutorial.projectSoccer.initializer;
 
 import com.tutorial.projectSoccer.model.Equipo;
-import com.tutorial.projectSoccer.model.Usuario;
 import com.tutorial.projectSoccer.repository.EquipoRepository;
-import com.tutorial.projectSoccer.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,12 +12,10 @@ import java.util.List;
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final EquipoRepository equipoRepository;
-    private final UsuarioRepository usuarioRepository;
 
     @Autowired
-    public DataInitializer(EquipoRepository equipoRepository, UsuarioRepository usuarioRepository) {
+    public DataInitializer(EquipoRepository equipoRepository) {
         this.equipoRepository = equipoRepository;
-        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -27,17 +23,8 @@ public class DataInitializer implements CommandLineRunner {
         if (equipoRepository.count() == 0) {
             equipoRepository.saveAll(getEquipos());
         }
-
-        if (usuarioRepository.count()==0){
-            usuarioRepository.saveAll(getUsuarios());
-        }
     }
 
-    private List<Usuario> getUsuarios(){
-        List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario(1,"test","$2a$10$R0W1lShDcEEuXklGya7cVut.vr.OEiarOHHA7jwzvJScZY8s1z7ti"));
-        return usuarios;
-    }
 
     private List<Equipo> getEquipos() {
         List<Equipo> equipos = new ArrayList<>();
